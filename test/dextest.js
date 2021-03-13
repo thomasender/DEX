@@ -45,7 +45,7 @@ contract("Dex", accounts => {
         let orderbook = await dex.getOrderBook(web3.utils.fromUtf8("LINK"), 0);
         assert(orderbook.length > 0);
         for (let i = 0; i < orderbook.length - 1; i++) {
-            assert(orderbook[i] >= orderbook[i+1], "Order book is not ordered right!")
+            assert(orderbook[i].price >= orderbook[i+1].price, "Order book is not ordered right!")
         }
     })
     //The SELL order book should be ordered on price from lowest to highest starting at index 0
@@ -60,7 +60,7 @@ contract("Dex", accounts => {
         let orderbook = await dex.getOrderBook(web3.utils.fromUtf8("LINK"), 1);
         assert(orderbook.length > 0);
         for (let i = 0; i < orderbook.length - 1; i++) {
-            assert(orderbook[i] <= orderbook[i+1], "Order book not ordered right!")
+            assert(orderbook[i].price <= orderbook[i+1].price, "Order book not ordered right!")
         }
     })
 })
