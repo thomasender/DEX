@@ -27,7 +27,7 @@ contract Wallet is Ownable  {
   //points to balances of different tokens, first key address of tokenHolder, second key token Symbol/ticker
   mapping (address => mapping(bytes32 => uint256)) public balances;
 
-  function addToken(bytes32 ticker, address tokenAddress) onlyOwner external{ //to add a new token, called from another contract therefore external
+  function addToken(bytes32 ticker, address tokenAddress) payable onlyOwner external{ //to add a new token, called from another contract therefore external
     tokenMapping[ticker] = Token(ticker, tokenAddress);             //creates new token struct and adds it to the token mapping using the ticker as key.struct holds ticker and address as parameters
     tokenList.push(ticker);                                         //pushes ticker to tokenList
   }

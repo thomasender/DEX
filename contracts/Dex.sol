@@ -1,9 +1,9 @@
 pragma solidity >=0.6.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
-import "./wallet.sol";
+import "./Wallet.sol";
 
-contract Dex is Wallet {
+contract Dex is Wallet{
 
     using SafeMath for uint256;
 
@@ -145,6 +145,9 @@ contract Dex is Wallet {
 
     }
 
+    function getTokenListLength() public returns (uint){
+      return tokenList.length;
+    }
 }
 
 //OLD CODE
