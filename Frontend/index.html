@@ -22,9 +22,8 @@
         <p class="lead">The place to trade your ETH against ERC20 Tokens!</p>
       </div>
     </div>
-
     <div class="container">
-        <div>
+
     <table cellpadding="30">
       <tr>
         <td>
@@ -41,9 +40,10 @@
         <td><h2>Your current Balance:</h2><p>In ETH: <span id="ETHBalanceOut"></span></p><p>In WEI: <span id="WEIBalanceOut"></span></p></td>
       </tr>
     </table>
-    </div>
-    <div>
-    <table cellpadding="30">
+
+  </div>
+    <div class="container">
+    <table cellpadding ="30">
       <tr>
           <td>
             <h2>Place your Limit Order here:</h2>
@@ -55,22 +55,39 @@
             <span class="OrderConfirmOut"></span>
           </td>
           <td>
-            <h2>Orderbook Buy Side:</h2>
-            <table class="OrderbookOutPut"></span>
+      <table class="OrderbookOutPut">
+        <h2>Orderbook Buy Side:</h2>
             <button type="button" id="btnRefreshOrderbook" class="btn btn-primary">Refresh the Orderbook</button>
+              </table>
+          </td>
+          <td>
+            <h2>Orderbook Sell Side:</h2>
+            <table class="OrderbookSellOutPut"></span>
+            <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
+          </table>
           </td>
         </tr>
-
-      </table>
-
-      <td>
-        <h2>Orderbook Sell Side:</h2>
-        <table class="OrderbookSellOutPut"></span>
-        <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
-      </td>
-      </div>
     </div>
-  
+    <table cellpadding ="20">
+      <tr>
+        <td>
+    <div class="TokenAdd">
+        <h3>Admin Token Here:</h3>
+        <input type="text" id="newTicker" placeholder="newTicker">
+        <button type="button" id="btnAddToken" class"btn btn-secondary">Add New Token</button>
+    </div>
+  </td>
+  <td>
+    <div class="container">
+      <h4>Token List</h4>
+      <span class="TokenListOut"></span>
+    </div>
+  </td>
+  <td>
+    <h4>Total Supply</h4>
+    <span class="TotalSupplyOut"></span>
+  </td>
+</tr>
 
 
   </body>

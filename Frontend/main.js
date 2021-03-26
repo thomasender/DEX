@@ -2,11 +2,12 @@ var web3 = new Web3(Web3.givenProvider);
 
 $(document).ready(function() {
       window.ethereum.enable().then(async function(accounts){
-      dex = await new web3.eth.Contract(window.abi, "0x10FaaD806c809eAf89dCEb734886f7eE82a30122", {from: accounts[0]});
+      dex = await new web3.eth.Contract(window.abi, "0x2E33E198c1C7B4055Ba62a143fea2693d7D5a4bE", {from: accounts[0]});
       prtETHBalance();
       prtOrderbook();
       prtOrderbookSell();
-      alertTicker();
+      prtTokenList();
+      prtTokenBalances();
     });
 
     $("#btnPlaceOrder").click(placeLimitOrder);
@@ -14,13 +15,42 @@ $(document).ready(function() {
     $("#btnWithdrawETH").click(withdrawEther);
     $("#btnRefreshOrderbook").click(reloadPage);
     $("#btnRefreshOrderbook2").click(reloadPage);
+    $("#btnAddToken").click(addToken);
 
 
+    async function prtTokenBalances(){
+      let tokenListLength = await dex.methods.getTokenListLength().call();
+      for (let i = 0; i < tokenListLength; i++){
+        let tokenListVar = await dex.methods.tokenList(i).call();
+        let newBalance = await dex.methods.balances(ethereum.selectedAddress, tokenListVar).call();
+        console.log("Balance of " + web3.utils.toUtf8(tokenListVar) + " " + newBalance);
+      }
+    }
 
 
-    async function alertTicker(){
-      let tickerList = await dex.methods.tokenMapping(web3.utils.fromAscii("LINK")).call();
-      console.log(tickerList);
+    async function addToken(){
+        let newTicker = $("#newTicker").val();
+        console.log(newTicker);
+        await dex.methods.addToken(web3.utils.fromUtf8(newTicker), "0x2F7e1754aB78B574cC1fAfb4c93556fa6e90F194").send();
+        let newToken = await dex.methods.tokenMapping(web3.utils.fromAscii(newTicker)).call();
+        await dex.methods.deposit(10, web3.utils.fromUtf8(newTicker));
+        reloadPage();
+    }
+
+
+    async function prtTokenList(){
+      let tokenListLength = await dex.methods.getTokenListLength().call();
+      console.log("Tokenlist length is " + tokenListLength);
+      for (let i = 0; i < tokenListLength; i++){
+        let tokenList = await dex.methods.tokenList(i).call();
+        console.log(web3.utils.toUtf8(tokenList));
+        $('<p />').text("TokenTicker:" + web3.utils.toUtf8(tokenList)).appendTo('.TokenListOut');
+      }
+    //  let tickerList = await dex.methods.tokenMapping(web3.utils.fromAscii("LINK")).call();
+    //  console.log(web3.utils.toUtf8(tickerList[0]));
+    //  let newToken = await dex.methods.tokenMapping(web3.utils.fromAscii("TRON")).call();
+    //  console.log(web3.utils.toUtf8(newToken[0]));
+
     }
 
   async function prtOrderbook(){
@@ -39,7 +69,7 @@ $(document).ready(function() {
       $('<td />').text("Amount: " + amount).appendTo('.OrderbookOutPut');
       $('<td />').text("Price: " + web3.utils.fromWei(price).toString()).appendTo('.OrderbookOutPut');
       }
-      
+
     }//END OF prtOrderbook
 
     async function prtOrderbookSell(){
