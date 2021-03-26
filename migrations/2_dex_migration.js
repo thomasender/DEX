@@ -1,5 +1,6 @@
 const Dex = artifacts.require("Dex");
 
-module.exports = function (deployer) {
+
+module.exports = async function (deployer) {
   deployer.deploy(Dex);
 };
