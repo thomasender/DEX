@@ -4649,36 +4649,9 @@
     "name": "solc",
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
-  "networks": {
-    "5777": {
-      "events": {
-        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previousOwner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "newOwner",
-              "type": "address"
-            }
-          ],
-          "name": "OwnershipTransferred",
-          "type": "event"
-        }
-      },
-      "links": {},
-      "address": "0x700c46F95B090d4e3Eef5B98021Fc93a8EFd6b4e",
-      "transactionHash": "0xebed1ed4c170368d72bd46f3923080464fe8056b854fe3cebc97b25c07d72a16"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-12T23:19:29.502Z",
+  "updatedAt": "2021-03-26T08:29:58.959Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
