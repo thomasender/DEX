@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>DEX</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./abi.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Welcome to the Decentralized Exchange</h1>
+        <p class="lead">The place to trade your ETH against ERC20 Tokens!</p>
+      </div>
+    </div>
+
+    <div class="container">
+        <div>
+    <table cellpadding="30">
+      <tr>
+        <td>
+          <h2>Deposit ETH here!</h2>
+          <p>How much ETH do you want to deposit?</p><input type="text" id="amountETH" placeholder="Amount">
+          <button type="button" id="btnDepositETH" class="btn btn-primary">Deposit ETH!</button>
+          <span class="ETHDepositOut"></span>
+        </td>
+        <td>
+          <h2>Withdraw ETH here!</h2>
+          <p>How much ETH do you want to withdraw?</p><input type="text" id="withdrawAmount" placeholder="Input amount in WEI!">
+          <button type="button" id="btnWithdrawETH" class="btn btn-primary">Withdraw ETH!</button>
+        </td>
+        <td><h2>Your current Balance:</h2><p>In ETH: <span id="ETHBalanceOut"></span></p><p>In WEI: <span id="WEIBalanceOut"></span></p></td>
+      </tr>
+    </table>
+    </div>
+    <div>
+    <table cellpadding="30">
+      <tr>
+          <td>
+            <h2>Place your Limit Order here:</h2>
+            <p>Input SIDE here:</p><input type="number" id="side" placeholder="BUY = 0, SELL = 1">
+            <p>Input TICKER here:</p><input type="bytes32" id="ticker" placeholder="Ticker">
+            <p>Input AMOUNT here:</p><input type="number" id="amount" placeholder="Amount">
+            <p>Input PRICE here:</p><input type="number" id="price" placeholder="Price in WEI">
+            <button type="button" id="btnPlaceOrder" class="btn btn-primary">Place Order</button>
+            <span class="OrderConfirmOut"></span>
+          </td>
+          <td>
+            <h2>Orderbook Buy Side:</h2>
+            <table class="OrderbookOutPut"></span>
+            <button type="button" id="btnRefreshOrderbook" class="btn btn-primary">Refresh the Orderbook</button>
+          </td>
+        </tr>
+
+      </table>
+
+      <td>
+        <h2>Orderbook Sell Side:</h2>
+        <table class="OrderbookSellOutPut"></span>
+        <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
+      </td>
+      </div>
+    </div>
+  
+
+
+  </body>
+</html>
