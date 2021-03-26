@@ -30,16 +30,15 @@ contract Dex is Wallet {
         return orderBook[ticker][uint(side)];
     }
 
+  function depositEth() payable external {
+      balances[msg.sender][bytes32("ETH")] = balances[msg.sender][bytes32("ETH")].add(msg.value);
+   }
 
-        function depositEth() payable external {
-             balances[msg.sender][bytes32("ETH")] = balances[msg.sender][bytes32("ETH")].add(msg.value);
-         }
-
-         function withdrawEth(uint amount) external {
-             require(balances[msg.sender][bytes32("ETH")] >= amount,'Insufficient balance');
-             balances[msg.sender][bytes32("ETH")] = balances[msg.sender][bytes32("ETH")].sub(amount);
-             msg.sender.call{value:amount}("");
-         }
+   function withdrawEth(uint amount) external {
+       require(balances[msg.sender][bytes32("ETH")] >= amount,'Insufficient balance');
+       balances[msg.sender][bytes32("ETH")] = balances[msg.sender][bytes32("ETH")].sub(amount);
+       msg.sender.call{value:amount}("");
+   }
 
 
     function createLimitOrder(Side side, bytes32 ticker, uint amount, uint price) public{
