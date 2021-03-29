@@ -17,36 +17,46 @@
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid">
-      <div class="container">
+      <div class="container" id="headerDiv">
         <h1 class="display-4">Welcome to the Decentralized Exchange</h1>
         <p class="lead">The place to trade your ETH against ERC20 Tokens!</p>
       </div>
     </div>
-    <div class="container">
 
+    <div class="container" id="DepoWithdrBalanceDiv">
+      <h2>Deposit, Withdraw & Balance Section</h2>
     <table cellpadding="30">
+
       <tr>
         <td>
-          <h2>Deposit ETH here!</h2>
+          <h4>Deposit ETH here!</h4>
           <p>How much ETH do you want to deposit?</p><input type="text" id="amountETH" placeholder="Amount">
           <button type="button" id="btnDepositETH" class="btn btn-primary">Deposit ETH!</button>
           <span class="ETHDepositOut"></span>
         </td>
         <td>
-          <h2>Withdraw ETH here!</h2>
+          <h4>Withdraw ETH here!</h4>
           <p>How much ETH do you want to withdraw?</p><input type="text" id="withdrawAmount" placeholder="Input amount in WEI!">
           <button type="button" id="btnWithdrawETH" class="btn btn-primary">Withdraw ETH!</button>
         </td>
-        <td><h2>Your current Balance:</h2><p>In ETH: <span id="ETHBalanceOut"></span></p><p>In WEI: <span id="WEIBalanceOut"></span></p></td>
+
+        <td>
+        <h4>Your ETH Balance:</h4><p>In ETH: <span id="ETHBalanceOut"></span></p><p>In WEI: <span id="WEIBalanceOut"></span></p></td>
+        <td><table class="tokenBalanceOut">
+        <h4>Your Token Balance</h4>
+        </table></td>
+
       </tr>
     </table>
 
   </div>
-    <div class="container">
+    <div class="container" id="PlaceOrders">
+            <h2>Orders Section</h2>
     <table cellpadding ="30">
+
       <tr>
           <td>
-            <h2>Place your Limit Order here:</h2>
+            <h4>Place your Limit Order here:</h4>
             <p>Input SIDE here:</p><input type="number" id="side" placeholder="BUY = 0, SELL = 1">
             <p>Input TICKER here:</p><input type="bytes32" id="ticker" placeholder="Ticker">
             <p>Input AMOUNT here:</p><input type="number" id="amount" placeholder="Amount">
@@ -55,47 +65,78 @@
             <span class="OrderConfirmOut"></span>
           </td>
           <td>
-      <table class="OrderbookOutPut" border="1px" cellpadding="5">
-        <h2>Orderbook Buy Side:</h2>
-            <button type="button" id="btnRefreshOrderbook" class="btn btn-primary">Refresh the Orderbook</button>
-              </table>
+            <h4>Place your Market Order here:</h4>
+            <p>Input SIDE here:</p><input type="number" id="sideMarketOrder" placeholder="BUY = 0, SELL = 1">
+            <p>Input TICKER here:</p><input type="bytes32" id="tickerMarketOrder" placeholder="Ticker">
+            <p>Input AMOUNT here:</p><input type="number" id="amountMarketOrder" placeholder="Amount">
+            <button type="button" id="btnPlaceMarketOrder" class="btn btn-primary">Place Order</button>
+            <span class="OrderConfirmOut"></span>
           </td>
           <td>
-            <h2>Orderbook Sell Side:</h2>
-            <table class="OrderbookSellOutPut" border="1" cellpadding="5"></span>
-            <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
-          </table>
-          </td>
+          <div class="container">
+            <h4>Tokenlist</h4>
+            <span class="TokenListOut"></span>
+          </div>
+        </td>
         </tr>
+      </table>
     </div>
-    <table cellpadding ="20">
+
+    <div class="container" id="OrderBooks">
+            <h2>Orderbooks Section</h2>
+      <table cellpadding="28">
+        <tr>
+          <td>
+            <table class="OrderbookOutPut">
+              <h4>Orderbook Buy Side:</h4>
+              <button type="button" id="btnRefreshOrderbook" class="btn btn-primary">Refresh the Orderbook</button>
+            </table>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+              <table class="OrderbookSellOutPut"></span>
+                <h4>Orderbook Sell Side:</h4>
+                <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
+              </table>
+            </td>
+          </tr>
+        </table>
+    </div>
+
+<div class="container" id="TokenDepoWithBal">
+    <h2>Admin Section</h2>
+    <table cellpadding="30">
       <tr>
         <td>
-    <div class="TokenAdd">
-        <h3>Admin Token Here:</h3>
-        <input type="text" id="newTicker" placeholder="newTicker">
-        <button type="button" id="btnAddToken" class="btn btn-secondary">Add New Token</button>
-    </div>
-  </td>
-  <td>
-    <div class="container">
-      <h4>Token List</h4>
-      <span class="TokenListOut"></span>
-    </div>
+
+    <h4>Deposit Tokens</h4>
+    <input type="number" id="depositTokenAmount">
+    <button type="button" id="btnDepositToken" class="btn btn-primary">Deposit Tokens!</button>
   </td>
   <td>
     <h4>Withdraw Tokens</h4>
     <input type="number" id="withdrawTokenAmount">
     <button type="button" id="btnWithdrawToken" class="btn btn-primary">Withdraw Tokens!</button>
   </td>
+    <!--   Add Token UI, not practical because is handled in migration, therefore commented
+    <div class="TokenAdd">
+        <td>
+        <h3>Add Token:</h3>
+        <input type="text" id="newTicker" placeholder="newTicker">
+        <button type="button" id="btnAddToken" class="btn btn-secondary">Add New Token</button>
+        </td>
+    </div>
+-->
 </tr>
-<tr>
-  <td>
-    <h4>Deposit Tokens</h4>
-    <input type="number" id="depositTokenAmount">
-    <button type="button" id="btnDepositToken" class="btn btn-primary">Deposit Tokens!</button>
-  </td>
-</tr>
+</table>
+</div>
+
+
+
+
 
 
   </body>
