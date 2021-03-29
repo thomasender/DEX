@@ -55,14 +55,14 @@
             <span class="OrderConfirmOut"></span>
           </td>
           <td>
-      <table class="OrderbookOutPut">
+      <table class="OrderbookOutPut" border="1px" cellpadding="5">
         <h2>Orderbook Buy Side:</h2>
             <button type="button" id="btnRefreshOrderbook" class="btn btn-primary">Refresh the Orderbook</button>
               </table>
           </td>
           <td>
             <h2>Orderbook Sell Side:</h2>
-            <table class="OrderbookSellOutPut"></span>
+            <table class="OrderbookSellOutPut" border="1" cellpadding="5"></span>
             <button type="button" id="btnRefreshOrderbook2" class="btn btn-primary">Refresh the Orderbook</button>
           </table>
           </td>
@@ -74,7 +74,7 @@
     <div class="TokenAdd">
         <h3>Admin Token Here:</h3>
         <input type="text" id="newTicker" placeholder="newTicker">
-        <button type="button" id="btnAddToken" class"btn btn-secondary">Add New Token</button>
+        <button type="button" id="btnAddToken" class="btn btn-secondary">Add New Token</button>
     </div>
   </td>
   <td>
@@ -84,8 +84,16 @@
     </div>
   </td>
   <td>
-    <h4>Total Supply</h4>
-    <span class="TotalSupplyOut"></span>
+    <h4>Withdraw Tokens</h4>
+    <input type="number" id="withdrawTokenAmount">
+    <button type="button" id="btnWithdrawToken" class="btn btn-primary">Withdraw Tokens!</button>
+  </td>
+</tr>
+<tr>
+  <td>
+    <h4>Deposit Tokens</h4>
+    <input type="number" id="depositTokenAmount">
+    <button type="button" id="btnDepositToken" class="btn btn-primary">Deposit Tokens!</button>
   </td>
 </tr>
 

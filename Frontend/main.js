@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 $(document).ready(function() {
       window.ethereum.enable().then(async function(accounts){
-      dex = await new web3.eth.Contract(window.abi, "0x2E33E198c1C7B4055Ba62a143fea2693d7D5a4bE", {from: accounts[0]});
+      dex = await new web3.eth.Contract(window.abi, "0xB61373e16A149171A738883CD822ea281373DCaA", {from: accounts[0]});
       prtETHBalance();
       prtOrderbook();
       prtOrderbookSell();
@@ -16,7 +16,20 @@ $(document).ready(function() {
     $("#btnRefreshOrderbook").click(reloadPage);
     $("#btnRefreshOrderbook2").click(reloadPage);
     $("#btnAddToken").click(addToken);
+    $("#btnWithdrawToken").click(withdrawToken);
+    $("#btnDepositToken").click(depositToken);
 
+    async function depositToken(){
+      let amountTokenDeposit = $("#depositTokenAmount").val();
+      console.log(amountTokenDeposit);
+      await dex.methods.deposit(amountTokenDeposit, web3.utils.fromUtf8("LINK")).send();
+    }
+
+    async function withdrawToken(){
+      let amountTokenWithdraw = $("#withdrawTokenAmount").val();
+      console.log(amountTokenWithdraw);
+      await dex.methods.withdraw(amountTokenWithdraw, web3.utils.fromUtf8("LINK")).send();
+    }
 
     async function prtTokenBalances(){
       let tokenListLength = await dex.methods.getTokenListLength().call();
@@ -61,13 +74,13 @@ $(document).ready(function() {
     for (let i = 0; i < orderBookBuy.length; i++){
       let ticker = orderBookBuy[i]["ticker"];
       let amount = orderBookBuy[i]["amount"];
-      let price = orderBookBuy[i]["price"];
+      let price = web3.utils.toWei(orderBookBuy[i]["price"]);
       console.log(ticker, amount, price);
       $('<tr />').appendTo('.OrderbookOutPut');
 
       $('<td />').text("Ticker: " + web3.utils.toUtf8(ticker).toString()).appendTo('.OrderbookOutPut');
       $('<td />').text("Amount: " + amount).appendTo('.OrderbookOutPut');
-      $('<td />').text("Price: " + web3.utils.fromWei(price).toString()).appendTo('.OrderbookOutPut');
+      $('<td />').text("Price (in WEI): " + web3.utils.fromWei(price).toString()).appendTo('.OrderbookOutPut');
       }
 
     }//END OF prtOrderbook
@@ -78,12 +91,12 @@ $(document).ready(function() {
     for (let i = 0; i < orderBookSell.length; i++){
       let tickerSell = orderBookSell[i]["ticker"];
       let amountSell = orderBookSell[i]["amount"];
-      let priceSell = orderBookSell[i]["price"];
+      let priceSell = web3.utils.toWei(orderBookSell[i]["price"]);
       console.log(tickerSell, amountSell, priceSell);
       $('<tr />').appendTo('.OrderbookSellOutPut');
       $('<td />').text("Ticker: " + web3.utils.toUtf8(tickerSell).toString()).appendTo('.OrderbookSellOutPut');
-      $('<td />').text("Amount: " + amountSell).appendTo('.orderBookSellOutPut');
-      $('<td />').text("Price: " + web3.utils.fromWei(priceSell).toString()).appendTo('.OrderbookSellOutPut');
+      $('<td />').text("Amount: " + amountSell).appendTo('.OrderbookSellOutPut');
+      $('<td />').text("Price (in WEI): " + web3.utils.fromWei(priceSell).toString()).appendTo('.OrderbookSellOutPut');
 
           }
     }
@@ -102,7 +115,8 @@ $(document).ready(function() {
     let price = $("#price").val();
     console.log(price);
     await dex.methods.createLimitOrder(side, ticker, amount, price).send();
-    reloadPage();
+    setTimeout(reloadPage(), 10000);
+
   }
 
   async function withdrawEther(){
